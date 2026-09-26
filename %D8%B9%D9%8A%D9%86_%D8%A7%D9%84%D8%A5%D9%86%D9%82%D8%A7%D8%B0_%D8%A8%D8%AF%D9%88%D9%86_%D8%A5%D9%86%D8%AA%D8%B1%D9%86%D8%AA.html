@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102a43">
+<title>عين الإنقاذ | نموذج يعمل دون إنترنت</title>
+<style>
+:root{--navy:#102a43;--blue:#176b87;--teal:#20a39e;--bg:#f1f5f9;--card:#fff;--ink:#172b4d;--muted:#62748a;--red:#c0392b;--amber:#b9770e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:var(--ink)}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;padding:22px 16px 18px}
+.wrap{max-width:900px;margin:auto}h1{margin:0;font-size:27px}header p{margin:7px 0 0;color:#d8e9f2;font-size:14px}
+.status{display:inline-flex;gap:7px;align-items:center;background:#e8f8f1;color:#17633b;border-radius:99px;padding:7px 12px;font-size:13px;font-weight:700;margin-top:13px}
+nav{display:flex;gap:8px;overflow:auto;padding:12px 14px;background:white;border-bottom:1px solid #dbe4ee}
+nav button{white-space:nowrap;border:0;border-radius:10px;padding:10px 14px;background:#eaf0f6;color:var(--navy);font-weight:700}
+nav button.active{background:var(--blue);color:white}
+main{max-width:900px;margin:auto;padding:16px}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid #e0e7ef;border-radius:16px;padding:17px;margin-bottom:14px;box-shadow:0 4px 16px #102a4309}
+h2{font-size:20px;margin:0 0 12px}h3{font-size:16px;margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+.stat{background:#f2f7fb;border-radius:13px;padding:14px}.stat strong{font-size:25px;display:block;color:var(--blue)}.stat span{font-size:13px;color:var(--muted)}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:white;color:var(--ink)}
+textarea{min-height:90px;resize:vertical}
+button.primary{background:var(--teal);color:#062e2c;border:0;border-radius:10px;padding:12px 16px;font:inherit;font-weight:800;margin-top:12px;width:100%}
+button.secondary{background:#eaf0f6;color:var(--navy);border:0;border-radius:9px;padding:9px 12px;font:inherit;font-weight:700}
+.notice{font-size:13px;line-height:1.7;color:#77550a;background:#fff8e6;border:1px solid #f4dfa6;border-radius:12px;padding:12px}
+.map{position:relative;min-height:290px;border-radius:14px;overflow:hidden;background-color:#e4eee8;background-image:linear-gradient(30deg,transparent 48%,#fff 49%,#fff 51%,transparent 52%),linear-gradient(120deg,transparent 48%,#fff 49%,#fff 51%,transparent 52%);background-size:90px 75px,110px 100px;border:1px solid #cbd8d1}
+.road{position:absolute;height:13px;background:#fff;border:1px solid #d4ddd8;transform:rotate(-22deg);width:130%;top:48%;right:-10%}
+.pin{position:absolute;border:0;background:var(--red);color:white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);width:28px;height:28px;box-shadow:0 2px 7px #0003;font-size:12px;font-weight:800}
+.pin span{display:block;transform:rotate(45deg)}
+.maplabel{position:absolute;bottom:10px;right:10px;background:#ffffffdd;padding:7px 10px;border-radius:8px;font-size:12px}
+.item{border:1px solid #e1e8ef;border-radius:12px;padding:13px;margin-top:10px}
+.itemtop{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:800;padding:5px 9px;border-radius:99px;background:#fff0d5;color:#855400}
+small,.muted{color:var(--muted);font-size:13px}
+footer{text-align:center;padding:18px;color:var(--muted);font-size:12px}
+.empty{text-align:center;padding:25px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>👁️ عين الإنقاذ</h1>
+<p>نموذج تجريبي لتنظيم البلاغات محليًا على جهازك</p>
+<div class="status">● وضع دون إنترنت — البيانات تحفظ على هذا الجهاز</div>
+</div></header>
+<nav>
+<button class="active" data-tab="home">الرئيسية</button>
+<button data-tab="new">بلاغ جديد</button>
+<button data-tab="records">سجل البلاغات</button>
+<button data-tab="mapview">الخريطة التجريبية</button>
+<button data-tab="about">عن المشروع</button>
+</nav>
+<main>
+<section id="home" class="panel active">
+<div class="card"><h2>لوحة المتابعة</h2><p class="muted">هذه نسخة محلية للتجربة والتعلّم، وليست قناة بلاغات رسمية.</p>
+<div class="grid">
+<div class="stat"><strong id="total">0</strong><span>إجمالي البلاغات المحفوظة</span></div>
+<div class="stat"><strong id="openCount">0</strong><span>تحتاج إلى مراجعة</span></div>
+<div class="stat"><strong id="doneCount">0</strong><span>تمت مراجعتها</span></div>
+</div></div>
+<div class="notice">تنبيه سلامة: لا تستخدم هذا النموذج لطلب النجدة الفعلية. للطوارئ اتصل برقم الطوارئ المحلي. لا تُدخل بيانات شخصية أو مواقع حقيقية في هذا النموذج التجريبي.</div>
+</section>
+<section id="new" class="panel">
+<div class="card"><h2>تسجيل بلاغ تجريبي</h2>
+<form id="reportForm">
+<label for="kind">نوع البلاغ</label><select id="kind" required><option value="">اختر النوع</option><option>حريق (تجريبي)</option><option>حادث مروري (تجريبي)</option><option>احتجاز أو فقدان (تجريبي)</option><option>حالة أخرى (تجريبي)</option></select>
+<label for="area">المنطقة الوصفية (خيالية)</label><input id="area" placeholder="مثال: القطاع التجريبي أ" required maxlength="80">
+<label for="details">تفاصيل البلاغ</label><textarea id="details" placeholder="اكتب وصفًا افتراضيًا، دون أسماء أو بيانات حقيقية" maxlength="500" required></textarea>
+<label for="priority">درجة الأولوية للتدريب</label><select id="priority"><option>عادية</option><option>مرتفعة</option><option>عاجلة (تجريبية فقط)</option></select>
+<button class="primary" type="submit">حفظ البلاغ على هذا الجهاز</button>
+</form></div>
+</section>
+<section id="records" class="panel">
+<div class="card"><div class="itemtop"><h2>سجل البلاغات</h2><button class="secondary" id="exportBtn">تصدير نسخة احتياطية</button></div>
+<label for="filter">تصفية حسب الحالة</label><select id="filter"><option value="all">الكل</option><option value="open">تحتاج مراجعة</option><option value="done">تمت المراجعة</option></select>
+<div id="recordList"></div>
+<button class="secondary" id="clearBtn" style="margin-top:14px">مسح كل البيانات المحلية</button>
+</div>
+</section>
+<section id="mapview" class="panel">
+<div class="card"><h2>خريطة توضيحية غير متصلة</h2><p class="muted">رسم تخطيطي فقط؛ النقاط افتراضية ولا تمثل مواقع حقيقية أو خريطة جغرافية.</p>
+<div class="map"><div class="road"></div>
+<button class="pin" style="top:27%;right:28%" title="نقطة افتراضية 1"><span>1</span></button>
+<button class="pin" style="top:55%;right:63%;background:#b9770e" title="نقطة افتراضية 2"><span>2</span></button>
+<button class="pin" style="top:68%;right:38%;background:#176b87" title="نقطة افتراضية 3"><span>3</span></button>
+<div class="maplabel">خريطة تدريبية — ليست للملاحة</div></div>
+<p class="muted">هذه الخريطة ثابتة ومحفوظة داخل الصفحة؛ لا تستخدم GPS ولا تتصل بالإنترنت.</p></div>
+</section>
+<section id="about" class="panel">
+<div class="card"><h2>عن عين الإنقاذ</h2><p>فكرة نموذجية لمساعدة فريق افتراضي على ترتيب البلاغات، إظهار الأولوية، وتقليل تكرار الإدخالات عبر مراجعة بشرية.</p>
+<ul><li>يعمل دون إنترنت بعد حفظ الملف وفتحه محليًا.</li><li>يحفظ البلاغات في مساحة التخزين المحلية للمتصفح على نفس الجهاز.</li><li>لا يرسل البيانات لأي جهة ولا يشاركها مع أجهزة أخرى.</li><li>حذف بيانات المتصفح أو فتح الملف في متصفح مختلف قد يجعل السجل غير متاح؛ استخدم التصدير للاحتفاظ بنسخة.</li></ul>
+<div class="notice">هذا مشروع تعليمي غير رسمي. لا يمثل الدفاع المدني أو أي جهة حكومية، ولا يتحقق من صدق البلاغات ولا يرسل فرق إنقاذ.</div></div>
+</section>
+</main>
+<footer>عين الإنقاذ • نموذج تعليمي محلي • إصدار تجريبي</footer>
+<script>
+const KEY='rescue_eye_demo_v1';
+let reports=[];
+try{reports=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(reports))reports=[]}catch(e){reports=[]}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(reports));return true}catch(e){alert('تعذر الحفظ في هذا المتصفح. جرّب فتح الملف في متصفح يدعم التخزين المحلي.');return false}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function render(){
+ document.getElementById('total').textContent=reports.length;
+ document.getElementById('openCount').textContent=reports.filter(r=>!r.done).length;
+ document.getElementById('doneCount').textContent=reports.filter(r=>r.done).length;
+ const f=document.getElementById('filter').value;
+ const list=reports.filter(r=>f==='all'||(f==='done'?r.done:!r.done)).slice().reverse();
+ document.getElementById('recordList').innerHTML=list.length?list.map(r=>`<div class="item"><div class="itemtop"><strong>${esc(r.kind)}</strong><span class="tag">${r.done?'تمت المراجعة':'تحتاج مراجعة'}</span></div><p>${esc(r.details)}</p><small>المنطقة: ${esc(r.area)} • الأولوية: ${esc(r.priority)}<br>${esc(r.date)}</small><br><button class="secondary" style="margin-top:10px" onclick="toggleDone('${r.id}')">${r.done?'إعادة للمراجعة':'تحديد تمت المراجعة'}</button> <button class="secondary" style="margin-top:10px" onclick="deleteReport('${r.id}')">حذف</button></div>`).join(''):'<div class="empty">ما فيه بلاغات محفوظة في هذا السجل.</div>';
+}
+document.getElementById('reportForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ reports.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),kind:document.getElementById('kind').value,area:document.getElementById('area').value.trim(),details:document.getElementById('details').value.trim(),priority:document.getElementById('priority').value,done:false,date:new Date().toLocaleString('ar-SA')});
+ save();e.target.reset();render();showTab('records');
+});
+window.toggleDone=id=>{reports=reports.map(r=>r.id===id?{...r,done:!r.done}:r);save();render()};
+window.deleteReport=id=>{if(confirm('تحذف هذا البلاغ التجريبي؟')){reports=reports.filter(r=>r.id!==id);save();render()}};
+document.getElementById('filter').addEventListener('change',render);
+document.getElementById('clearBtn').addEventListener('click',()=>{if(confirm('متأكد من مسح كل البلاغات المحفوظة على هذا الجهاز؟')){reports=[];save();render()}});
+document.getElementById('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(reports,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='عين-الإنقاذ-نسخة-احتياطية.json';a.click();URL.revokeObjectURL(a.href)});
+function showTab(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id))}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+render();
+</script>
+</body></html>
