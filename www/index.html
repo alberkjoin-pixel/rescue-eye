@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عين الإنقاذ</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #102a43;
+  color: white;
+  text-align: center;
+}
+
+header {
+  background: #176b87;
+  padding: 25px 15px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+main {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  color: #102a43;
+  padding: 20px;
+  border-radius: 18px;
+  margin: 20px auto;
+  max-width: 450px;
+  box-shadow: 0 5px 15px #0003;
+}
+
+button {
+  background: #176b87;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 22px;
+  font-size: 18px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(.97);
+}
+
+footer {
+  padding: 20px;
+  font-size: 14px;
+  color: #d9eaf2;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚑 عين الإنقاذ</h1>
+  <p>معًا لإنقاذ الأرواح</p>
+</header>
+
+<main>
+  <div class="card">
+    <h2>مرحبًا بك في عين الإنقاذ</h2>
+    <p>تطبيق توعوي بسيط يساعدك على الوصول إلى معلومات الطوارئ حتى بدون إنترنت.</p>
+  </div>
+
+  <div class="card">
+    <h2>🚨 أرقام الطوارئ</h2>
+    <p>الإسعاف: 997</p>
+    <p>الدفاع المدني: 998</p>
+    <p>الشرطة: 999</p>
+    <p>رقم الطوارئ الموحد: 911 في المناطق التي تتوفر فيها الخدمة.</p>
+  </div>
+
+  <div class="card">
+    <h2>🩹 إرشادات الإسعافات الأولية</h2>
+    <button onclick="showInfo('نزيف')">الإسعاف عند النزيف</button>
+    <button onclick="showInfo('حروق')">الإسعاف عند الحروق</button>
+    <button onclick="showInfo('اختناق')">الإسعاف عند الاختناق</button>
+    <p id="info">اختر الحالة لعرض الإرشادات.</p>
+  </div>
+</main>
+
+<footer>
+  عين الإنقاذ © 2026
+  <br>
+  تطبيق توعوي لا يغني عن الاتصال بالطوارئ.
+</footer>
+
+<script>
+function showInfo(type) {
+  const info = document.getElementById("info");
+
+  if (type === "نزيف") {
+    info.textContent =
+      "اضغط مباشرة على مكان النزيف بقطعة قماش نظيفة، واتصل بالإسعاف إذا كان النزيف شديدًا.";
+  } else if (type === "حروق") {
+    info.textContent =
+      "برّد الحرق بماء جارٍ فاتر أو بارد لمدة 20 دقيقة. لا تستخدم الثلج أو معجون الأسنان.";
+  } else if (type === "اختناق") {
+    info.textContent =
+      "إذا كان الشخص لا يستطيع التنفس أو الكلام، اتصل بالطوارئ فورًا واطلب مساعدة شخص مدرّب.";
+  }
+}
+</script>
+
+</body>
+</html>
